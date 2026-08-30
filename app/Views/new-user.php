@@ -4,16 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | Sistema de Controle de Serviços</title>
-  <link rel="stylesheet" href="<?php echo BASE_PUBLIC; ?>css/login.css">
+  <title>Cadastrar Novo Usuário | Sistema de Controle de Serviços</title>
+  <link rel="stylesheet" href="<?php echo BASE_PUBLIC; ?>css/new-user.css">
 </head>
 
 <body>
-  <div class="login-container">
-    <div class="login-box">
-      <h1 class="login-title">Sistema de Controle de Serviços</h1>
+  <div class="register-container">
+    <div class="register-box">
+      <h1 class="register-title">Cadastrar Novo Usuário</h1>
 
-      <form class="login-form" id="login-form">
+      <form class="register-form" id="register-form">
         <div class="form-group">
           <input type="email" name="email" class="form-input" placeholder="email@email.com" required>
         </div>
@@ -22,11 +22,11 @@
           <input type="password" name="password" class="form-input" placeholder="***************" required>
         </div>
 
-        <div class="login-buttons">
-          <button type="submit" class="login-button">Entrar</button>
-          <a href="" class="register-link">Cadastrar usuário</a>
+        <div class="register-buttons">
+          <button type="submit" class="register-button">Cadastrar</button>
         </div>
       </form>
+
     </div>
   </div>
 </body>
