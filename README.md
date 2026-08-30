@@ -30,7 +30,7 @@ Abaixo está a lista de tarefas baseada nos requisitos levantados no projeto agr
 - [ ] **RN07** - **Comissão Faixa 3**: Para serviços com valor maior que R$ 10.000,00, a comissão gerada deve ser de **20%**.
 
 ## 🛠️ Requisitos Não Funcionais (RNF)
-- [ ] **RNF01** - **Linguagem de Programação**: O sistema deve ser implementado na linguagem PHP.
+- [x] **RNF01** - **Linguagem de Programação**: O sistema deve ser implementado na linguagem PHP.
 - [ ] **RNF02** - **Banco de Dados**: O sistema deve utilizar MySQL para gerenciar e salvar o banco de dados.
 - [ ] **RNF03** - **Envio de Emails**: O sistema deve ter um serviço de SMTP ou biblioteca configurada em PHP para envio dos e-mails de finalização (ex: PHPMailer).
-- [ ] **RNF04** - **Interface (UI)**: A tela de Dashboard deve possuir elementos visuais que consigam destacar corretamente as seções de valor total financeiro e lista de serviços pendentes.
+- [x] **RNF04** - **Interface (UI)**: A tela de Dashboard deve possuir elementos visuais que consigam destacar corretamente as seções de valor total financeiro e lista de serviços pendentes.
