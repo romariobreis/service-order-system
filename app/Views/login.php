@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Sistema de Controle de Serviços</title>
+  <link rel="stylesheet" href="/service-order-system/public/css/login.css">
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <h1 class="login-title">Sistema de Controle de Serviços</h1>
+
+      <form class="login-form" id="login-form">
+        <div class="form-group">
+          <input
+            type="email"
+            name="email"
+            class="form-input"
+            placeholder="email@email.com"
+            required>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            name="password"
+            class="form-input"
+            placeholder="Senha"
+            required>
+        </div>
+      </form>
+
+      <div class="login-buttons">
+        <button type="submit" form="login-form" class="login-button">Entrar</button>
+        <a href="/service-order-system/auth/register" class="register-link">Cadastrar usuário</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
