@@ -14,12 +14,12 @@
       <div class="sidebar-content">
         <div class="user-info">
           <p class="user-label">Logado como:</p>
-          <p class="user-name">José Silva</p>
+          <p class="user-name"><?php echo !empty($userLogged) ? $userLogged : ''; ?></p>
           <p class="current-date"><?php echo date('d/m/Y'); ?></p>
         </div>
 
         <nav class="sidebar-nav">
-          <a href="<?php echo BASE_URL; ?>service/new" class="sidebar-link">Cadastrar Serviço</a>
+          <a href="<?php echo BASE_URL; ?>register-new-service" class="sidebar-link">Cadastrar Serviço</a>
         </nav>
       </div>
     </aside>
