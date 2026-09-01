@@ -5,7 +5,7 @@ spl_autoload_register(function ($class) {
 
   $namespaces = [
     'Core\\' => 'core/',
-    'App\\'  => 'src/'
+    'App\\'  => 'app/'
   ];
 
   foreach ($namespaces as $prefix => $dir) {
