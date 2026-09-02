@@ -57,10 +57,22 @@
       <div class="cards-section">
         <div class="card">
           <h2 class="card-title">Serviços Finalizados</h2>
+          <div style="font-size: 28px; font-weight: 700; color: var(--color-completed); margin-bottom: 20px;">
+            <?php echo $metrics['total'] ?? 'R$ 0,00'; ?>
+          </div>
+
           <ul class="service-list">
-            <li class="service-item">127569 - Troca de Tela de Notebook</li>
-            <li class="service-item">986759 - Conserto de carregador</li>
-            <li class="service-item">567867 - Troca de pasta térmica</li>
+            <?php if (!empty($metrics['latestCompleted'])) { ?>
+              <?php foreach ($metrics['latestCompleted'] as $item) { ?>
+                <li class="service-item">
+                  <?php echo $item->id_service; ?> - <?php echo htmlspecialchars($item->description); ?>
+                </li>
+              <?php } ?>
+            <?php } else { ?>
+              <li class="service-item" style="color: var(--color-gray-light);">
+                Nenhum serviço finalizado ainda.
+              </li>
+            <?php } ?>
           </ul>
         </div>
 

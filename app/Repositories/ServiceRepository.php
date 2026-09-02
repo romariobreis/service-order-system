@@ -47,4 +47,31 @@ class ServiceRepository
       ':userId'      => $userId
     ]);
   }
+
+  public function getTotalValueByUserId(int $userId): float
+  {
+    $sql = "SELECT SUM(price) as total FROM service 
+            WHERE user_id_user = :userId AND finished_at IS NOT NULL";
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':userId', $userId);
+    $stmt->execute();
+    $result = $stmt->fetch();
+
+    return $result->total ? (float) $result->total : 0.0;
+  }
+
+  public function getLatestCompletedServices(int $limit = 3): array
+  {
+    $sql = "SELECT id_service, description FROM service 
+            WHERE finished_at IS NOT NULL 
+            ORDER BY finished_at DESC 
+            LIMIT :limit";
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':limit', $limit);
+    $stmt->execute();
+
+    return $stmt->fetchAll();
+  }
 }

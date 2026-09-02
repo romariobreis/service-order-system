@@ -9,7 +9,7 @@ Abaixo está a lista de tarefas baseada nos requisitos levantados no projeto agr
 - [x] **RF02** - **Dashboard**: Deve exibir dados do usuário logado e data atual.
 - [x] **RF03** - **Dashboard**: Deve exibir tabela de serviços prestados pelos funcionários contendo as colunas ID, Descrição, Status, Valor e Nome do Usuário.
 - [x] **RF04** - **Dashboard**: Deve exibir coluna **Ações** na tabela com botões para **Excluir**, **Alterar** e **Finalizar** o registro do serviço.
-- [ ] **RF05** - **Dashboard (Serviços Finalizados)**: Deve exibir de forma destacada uma pequena lista com os últimos serviços com status **"Finalizado"** e o **Valor Total** dos serviços prestados pelo usuário logado.
+- [x] **RF05** - **Dashboard (Serviços Finalizados)**: Deve exibir de forma destacada uma pequena lista com os últimos serviços com status **"Finalizado"** e o **Valor Total** dos serviços prestados pelo usuário logado.
 - [ ] **RF06** - **Dashboard (Serviços Pendentes)**: Deve exibir de forma destacada uma pequena lista com os últimos serviços com status **"Pendente"**.
 - [ ] **RF07** - **Finalizar Serviço**: Ao clicar em finalizar, o sistema deve gravar a data de finalização, calcular a comissão gerada e disparar um e-mail para o usuário que realizou o serviço.
 - [ ] **RF08** - **Filtros**: Deve permitir buscar serviços na tabela por **Período** (informando data inicial e/ou final).

@@ -16,11 +16,14 @@ class DashboardController extends BaseController
   public function index()
   {
     $userLogged = $_SESSION['user_name'];
+    $userId = $_SESSION['user_id'];
 
+    $metrics = $this->serviceService->getDashboardMetrics($userId);
     $services = $this->serviceService->getAllServices();
 
     $this->view('dashboard', [
       'userLogged' => $userLogged,
+      'metrics'    => $metrics,
       'services'   => $services
     ]);
   }

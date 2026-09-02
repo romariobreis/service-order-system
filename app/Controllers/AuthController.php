@@ -15,7 +15,7 @@ class AuthController extends BaseController
 
   public function index()
   {
-    if (!empty($_SESSION['user_name'])) {
+    if (!empty($_SESSION['user_id']) && !empty($_SESSION['user_name'])) {
       header('Location: ' . BASE_URL . 'dashboard');
       exit;
     } else {
