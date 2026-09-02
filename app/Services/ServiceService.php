@@ -55,13 +55,15 @@ class ServiceService
   public function getDashboardMetrics(int $userId): array
   {
     $total = $this->serviceRepository->getTotalValueByUserId($userId);
-    $latestCompleted = $this->serviceRepository->getLatestCompletedServices(3);
+    $latestCompleted = $this->serviceRepository->getLatestCompletedServices($userId, 3);
+    $latestPending = $this->serviceRepository->getLatestPendingServices($userId, 3);
 
     $totalValueFormatted = 'R$ ' . number_format($total, 2, ',', '.');
 
     return [
       'total' => $totalValueFormatted,
-      'latestCompleted'      => $latestCompleted
+      'latestCompleted'      => $latestCompleted,
+      'latestPending'        => $latestPending
     ];
   }
 }

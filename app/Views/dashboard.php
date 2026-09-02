@@ -79,9 +79,17 @@
         <div class="card">
           <h2 class="card-title">Serviços Pendentes</h2>
           <ul class="service-list">
-            <li class="service-item">4562345 - Instalação de Office 2016</li>
-            <li class="service-item">4585468 - Reparo de Sistema Operacional</li>
-            <li class="service-item">458745 - Troca de Memória</li>
+            <?php if (!empty($metrics['latestPending'])) { ?>
+              <?php foreach ($metrics['latestPending'] as $item) { ?>
+                <li class="service-item">
+                  <?php echo $item->id_service; ?> - <?php echo htmlspecialchars($item->description); ?>
+                </li>
+              <?php } ?>
+            <?php } else { ?>
+              <li class="service-item" style="color: var(--color-gray-light);">
+                Nenhum serviço pendente no momento.
+              </li>
+            <?php } ?>
           </ul>
         </div>
       </div>

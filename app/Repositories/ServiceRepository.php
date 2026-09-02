@@ -61,14 +61,30 @@ class ServiceRepository
     return $result->total ? (float) $result->total : 0.0;
   }
 
-  public function getLatestCompletedServices(int $limit = 3): array
+  public function getLatestCompletedServices(int $userId, int $limit = 3): array
   {
     $sql = "SELECT id_service, description FROM service 
-            WHERE finished_at IS NOT NULL 
+            WHERE finished_at IS NOT NULL AND user_id_user = :userId
             ORDER BY finished_at DESC 
             LIMIT :limit";
 
     $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':userId', $userId);
+    $stmt->bindValue(':limit', $limit);
+    $stmt->execute();
+
+    return $stmt->fetchAll();
+  }
+
+  public function getLatestPendingServices(int $userId, int $limit = 3): array
+  {
+    $sql = "SELECT id_service, description FROM service 
+            WHERE finished_at IS NULL AND user_id_user = :userId
+            ORDER BY id_service DESC 
+            LIMIT :limit";
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':userId', $userId);
     $stmt->bindValue(':limit', $limit);
     $stmt->execute();
 
