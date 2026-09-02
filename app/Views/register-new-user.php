@@ -13,7 +13,7 @@
     <div class="register-box">
       <h1 class="register-title">Cadastrar Novo Usuário</h1>
 
-      <form class="register-form" id="register-form">
+      <form class="register-form" id="register-form" method="POST" action="<?php echo BASE_URL; ?>register">
         <div class="form-group">
           <input type="email" name="email" class="form-input" placeholder="email@email.com" required>
         </div>

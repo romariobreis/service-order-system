@@ -20,6 +20,9 @@
 
         <nav class="sidebar-nav">
           <a href="<?php echo BASE_URL; ?>register-new-service" class="sidebar-link">Cadastrar Serviço</a>
+          <a href="<?php echo BASE_URL; ?>logout" class="sidebar-link">
+            Sair
+          </a>
         </nav>
       </div>
     </aside>
