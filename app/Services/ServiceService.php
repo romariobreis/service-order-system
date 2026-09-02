@@ -34,9 +34,9 @@ class ServiceService
     return $this->serviceRepository->create($description, $priceFloat, $userId);
   }
 
-  public function getAllServices(): array
+  public function getAllServices(array $filters = []): array
   {
-    $services = $this->serviceRepository->findAllWithUser();
+    $services = $this->serviceRepository->findFiltered($filters);
 
     foreach ($services as $service) {
       if (empty($service->finished_at)) {

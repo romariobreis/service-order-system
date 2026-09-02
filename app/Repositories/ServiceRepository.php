@@ -105,4 +105,48 @@ class ServiceRepository
     $stmt = $this->db->prepare($sql);
     return $stmt->execute([':commission' => $commission, ':id' => $id]);
   }
+
+  public function findFiltered(array $filters)
+  {
+    $sql = "SELECT s.id_service, s.description, s.price, s.created_at, s.finished_at, u.name as user_name FROM service s
+            INNER JOIN user u ON s.user_id_user = u.id_user
+            WHERE 1=1";
+
+    $params = [];
+
+    if (!empty($filters['serviceName'])) {
+      $sql .= " AND s.description LIKE :serviceName";
+      $params[':serviceName'] = '%' . $filters['serviceName'] . '%';
+    }
+
+    if (!empty($filters['userName'])) {
+      $sql .= " AND u.name LIKE :userName";
+      $params[':userName'] = '%' . $filters['userName'] . '%';
+    }
+
+    if (!empty($filters['status'])) {
+      if ($filters['status'] === 'pending') {
+        $sql .= " AND s.finished_at IS NULL";
+      } elseif ($filters['status'] === 'finished') {
+        $sql .= " AND s.finished_at IS NOT NULL";
+      }
+    }
+
+    if (!empty($filters['startDate'])) {
+      $sql .= " AND DATE(s.created_at) >= :startDate";
+      $params[':startDate'] = $filters['startDate'];
+    }
+
+    if (!empty($filters['endDate'])) {
+      $sql .= " AND DATE(s.created_at) <= :endDate";
+      $params[':endDate'] = $filters['endDate'];
+    }
+
+    $sql .= " ORDER BY s.id_service DESC";
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll();
+  }
 }

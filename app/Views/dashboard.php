@@ -94,12 +94,28 @@
         </div>
       </div>
 
-      <div class="filters-section">
-        <input type="text" class="filter-input" placeholder="Nome">
-        <input type="date" class="filter-input" value="15/08/2024">
-        <input type="date" class="filter-input" value="26/08/2024">
-        <button class="filter-button">Filtrar</button>
-      </div>
+      <form method="GET" class="filters-section" style="flex-wrap: wrap;">
+
+        <input type="text" name="serviceName" class="filter-input" placeholder="Nome do Serviço" value="<?php echo htmlspecialchars($filters['serviceName'] ?? '') ?>">
+
+        <input type="text" name="userName" class="filter-input" placeholder="Nome do Usuário" value="<?php echo htmlspecialchars($filters['userName'] ?? '') ?>">
+
+        <select name="status" class="filter-input" style="background: white;">
+          <option value="">Todos os Status</option>
+          <option value="pending" <?php echo !empty($filters['status']) && $filters['status'] === 'pending' ? 'selected' : '' ?>>Pendente</option>
+          <option value="finished" <?php echo !empty($filters['status']) && $filters['status'] === 'finished' ? 'selected' : '' ?>>Finalizado</option>
+        </select>
+
+        <input type="date" name="startDate" class="filter-input" title="Data Inicial"
+          value="<?php echo htmlspecialchars($filters['startDate'] ?? '') ?>">
+
+        <input type="date" name="endDate" class="filter-input" title="Data Final"
+          value="<?php echo htmlspecialchars($filters['endDate'] ?? '') ?>">
+
+        <button type="submit" class="filter-button">Filtrar</button>
+
+        <a href="<?php echo BASE_URL ?>" class="filter-button" style="background-color: var(--color-gray-medium); text-decoration: none; text-align: center; display: inline-block;">Limpar</a>
+      </form>
 
       <div class="table-section">
         <table class="services-table">
