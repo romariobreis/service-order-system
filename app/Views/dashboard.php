@@ -32,32 +32,90 @@
         <h1 class="dashboard-title">DASHBOARD</h1>
       </div>
 
+      <?php if (!empty($_SESSION['success_message'])) { ?>
+        <div class="alert alert-success">
+          <span><?php echo $_SESSION['success_message']; ?></span>
+          <button type="button" class="alert-close" onclick="this.parentElement.remove();" title="Fechar">
+            &times;
+          </button>
+        </div>
+        <?php unset($_SESSION['success_message']);
+        ?>
+      <?php } ?>
+
+      <?php if (!empty($_SESSION['error_message'])) { ?>
+        <div class="alert alert-error">
+          <span><?php echo $_SESSION['error_message']; ?></span>
+          <button type="button" class="alert-close" onclick="this.parentElement.remove();" title="Fechar">
+            &times;
+          </button>
+        </div>
+        <?php unset($_SESSION['error_message']);
+        ?>
+      <?php } ?>
+
       <div class="cards-section">
         <div class="card">
           <h2 class="card-title">Serviços Finalizados</h2>
+          <div style="font-size: 28px; font-weight: 700; color: var(--color-completed); margin-bottom: 20px;">
+            <?php echo $metrics['total'] ?? 'R$ 0,00'; ?>
+          </div>
+
           <ul class="service-list">
-            <li class="service-item">127569 - Troca de Tela de Notebook</li>
-            <li class="service-item">986759 - Conserto de carregador</li>
-            <li class="service-item">567867 - Troca de pasta térmica</li>
+            <?php if (!empty($metrics['latestCompleted'])) { ?>
+              <?php foreach ($metrics['latestCompleted'] as $item) { ?>
+                <li class="service-item">
+                  <?php echo $item->id_service; ?> - <?php echo htmlspecialchars($item->description); ?>
+                </li>
+              <?php } ?>
+            <?php } else { ?>
+              <li class="service-item" style="color: var(--color-gray-light);">
+                Nenhum serviço finalizado ainda.
+              </li>
+            <?php } ?>
           </ul>
         </div>
 
         <div class="card">
           <h2 class="card-title">Serviços Pendentes</h2>
           <ul class="service-list">
-            <li class="service-item">4562345 - Instalação de Office 2016</li>
-            <li class="service-item">4585468 - Reparo de Sistema Operacional</li>
-            <li class="service-item">458745 - Troca de Memória</li>
+            <?php if (!empty($metrics['latestPending'])) { ?>
+              <?php foreach ($metrics['latestPending'] as $item) { ?>
+                <li class="service-item">
+                  <?php echo $item->id_service; ?> - <?php echo htmlspecialchars($item->description); ?>
+                </li>
+              <?php } ?>
+            <?php } else { ?>
+              <li class="service-item" style="color: var(--color-gray-light);">
+                Nenhum serviço pendente no momento.
+              </li>
+            <?php } ?>
           </ul>
         </div>
       </div>
 
-      <div class="filters-section">
-        <input type="text" class="filter-input" placeholder="Nome">
-        <input type="date" class="filter-input" value="15/08/2024">
-        <input type="date" class="filter-input" value="26/08/2024">
-        <button class="filter-button">Filtrar</button>
-      </div>
+      <form method="GET" class="filters-section" style="flex-wrap: wrap;">
+
+        <input type="text" name="serviceName" class="filter-input" placeholder="Nome do Serviço" value="<?php echo htmlspecialchars($filters['serviceName'] ?? '') ?>">
+
+        <input type="text" name="userName" class="filter-input" placeholder="Nome do Usuário" value="<?php echo htmlspecialchars($filters['userName'] ?? '') ?>">
+
+        <select name="status" class="filter-input" style="background: white;">
+          <option value="">Todos os Status</option>
+          <option value="pending" <?php echo !empty($filters['status']) && $filters['status'] === 'pending' ? 'selected' : '' ?>>Pendente</option>
+          <option value="finished" <?php echo !empty($filters['status']) && $filters['status'] === 'finished' ? 'selected' : '' ?>>Finalizado</option>
+        </select>
+
+        <input type="date" name="startDate" class="filter-input" title="Data Inicial"
+          value="<?php echo htmlspecialchars($filters['startDate'] ?? '') ?>">
+
+        <input type="date" name="endDate" class="filter-input" title="Data Final"
+          value="<?php echo htmlspecialchars($filters['endDate'] ?? '') ?>">
+
+        <button type="submit" class="filter-button">Filtrar</button>
+
+        <a href="<?php echo BASE_URL ?>" class="filter-button" style="background-color: var(--color-gray-medium); text-decoration: none; text-align: center; display: inline-block;">Limpar</a>
+      </form>
 
       <div class="table-section">
         <table class="services-table">
@@ -72,34 +130,41 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>4585874</td>
-              <td>Troca de Tela LED</td>
-              <td>R$ 425,00</td>
-              <td><span class="status pending">PENDENTE</span></td>
-              <td>José Silva</td>
-              <td>
-                <div class="action-buttons">
-                  <button class="action-btn edit" title="Alterar">✏️</button>
-                  <button class="action-btn complete" title="Finalizar">✓</button>
-                  <button class="action-btn delete" title="Excluir">✕</button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>9945258</td>
-              <td>Limpeza de Computador</td>
-              <td>R$ 100,00</td>
-              <td><span class="status completed">FINALIZADO</span></td>
-              <td>Maria Santos</td>
-              <td>
-                <div class="action-buttons">
-                  <button class="action-btn edit" title="Alterar">✏️</button>
-                  <button class="action-btn complete" title="Finalizar">✓</button>
-                  <button class="action-btn delete" title="Excluir">✕</button>
-                </div>
-              </td>
-            </tr>
+            <?php if (!empty($services)) { ?>
+              <?php foreach ($services as $service) { ?>
+                <tr>
+                  <td><?php echo $service->id_service; ?></td>
+                  <td><?php echo htmlspecialchars($service->description); ?></td>
+                  <td><?php echo $service->price_formatted; ?></td>
+                  <td>
+                    <span class="status <?php echo $service->status_class; ?>">
+                      <?php echo $service->status_label; ?>
+                    </span>
+                  </td>
+                  <td><?php echo htmlspecialchars($service->user_name); ?></td>
+                  <td>
+                    <div class="action-buttons">
+                      <a href="<?php echo BASE_URL ?>service/<?php echo $service->id_service ?>/edit" class="action-btn edit" title="Alterar" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">✏️</a>
+                      <?php if (empty($service->finished_at)) { ?>
+                        <form action="<?php echo BASE_URL ?>service/finish" method="POST" style="display:inline;">
+                          <input type="hidden" name="id_service" value="<?php echo $service->id_service ?>">
+                          <button type="submit" class="action-btn complete" title="Finalizar" onclick="return confirm('Deseja realmente finalizar este serviço?')">✓</button>
+                        </form>
+                      <?php } ?>
+                      <form action="<?php echo BASE_URL ?>service/<?php echo $service->id_service ?>/delete" method="POST" style="display:inline;">
+                        <button type="submit" class="action-btn delete" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir este serviço? Esta ação não pode ser desfeita.')">✕</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              <?php } ?>
+            <?php } else { ?>
+              <tr>
+                <td colspan="6" style="text-align: center; padding: 30px;">
+                  Nenhum serviço cadastrado até o momento.
+                </td>
+              </tr>
+            <?php } ?>
           </tbody>
         </table>
       </div>

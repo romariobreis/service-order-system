@@ -23,6 +23,14 @@ class UserRepository
     return $stmt->fetchAll();
   }
 
+  public function findById(int $id)
+  {
+    $sql = "SELECT * FROM user WHERE id_user = :id LIMIT 1";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([':id' => $id]);
+    return $stmt->fetch();
+  }
+
   public function findByEmail(string $email)
   {
     $sql = "SELECT * FROM user WHERE email = :email LIMIT 1";

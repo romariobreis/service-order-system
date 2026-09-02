@@ -11,6 +11,14 @@
   --color-shadow-dark: rgba(26, 26, 26, 0.3);
   --color-pending: #ff9800;
   --color-completed: #4caf50;
+
+  --color-success-bg: #d4edda;
+  --color-success-text: #155724;
+  --color-success-border: #c3e6cb;
+
+  --color-error-bg: #f8d7da;
+  --color-error-text: #721c24;
+  --color-error-border: #f5c6cb;
 }
 
 * {
@@ -304,6 +312,50 @@ body {
 
 .action-btn.delete:hover {
   background-color: rgba(229, 57, 53, 0.1);
+}
+
+.alert {
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert-success {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+  border-color: var(--color-success-border);
+}
+
+.alert-error {
+  background-color: var(--color-error-bg);
+  color: var(--color-error-text);
+  border-color: var(--color-error-border);
+}
+
+.alert-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: opacity 0.2s ease;
+}
+
+.alert-close:hover {
+  opacity: 0.7;
+}
+
+.alert-success .alert-close {
+  color: var(--color-success-text);
+}
+
+.alert-error .alert-close {
+  color: var(--color-error-text);
 }
 
 @media (max-width: 1024px) {
