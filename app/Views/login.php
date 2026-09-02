@@ -24,7 +24,7 @@
 
         <div class="login-buttons">
           <button type="submit" class="login-button">Entrar</button>
-          <a href="" class="register-link">Cadastrar usuário</a>
+          <a href="<?php echo BASE_URL . 'register-new-user'; ?>" class="register-link">Cadastrar usuário</a>
         </div>
       </form>
     </div>
