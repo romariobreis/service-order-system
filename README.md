@@ -11,7 +11,7 @@ Abaixo está a lista de tarefas baseada nos requisitos levantados no projeto agr
 - [x] **RF04** - **Dashboard**: Deve exibir coluna **Ações** na tabela com botões para **Excluir**, **Alterar** e **Finalizar** o registro do serviço.
 - [x] **RF05** - **Dashboard (Serviços Finalizados)**: Deve exibir de forma destacada uma pequena lista com os últimos serviços com status **"Finalizado"** e o **Valor Total** dos serviços prestados pelo usuário logado.
 - [x] **RF06** - **Dashboard (Serviços Pendentes)**: Deve exibir de forma destacada uma pequena lista com os últimos serviços com status **"Pendente"**.
-- [ ] **RF07** - **Finalizar Serviço**: Ao clicar em finalizar, o sistema deve gravar a data de finalização, calcular a comissão gerada e disparar um e-mail para o usuário que realizou o serviço.
+- [x] **RF07** - **Finalizar Serviço**: Ao clicar em finalizar, o sistema deve gravar a data de finalização, calcular a comissão gerada e disparar um e-mail para o usuário que realizou o serviço.
 - [ ] **RF08** - **Filtros**: Deve permitir buscar serviços na tabela por **Período** (informando data inicial e/ou final).
 - [ ] **RF09** - **Filtros**: Deve permitir buscar serviços na tabela pelo **Nome do serviço**.
 - [ ] **RF10** - **Filtros**: Deve permitir buscar serviços na tabela por **Status**.
@@ -25,12 +25,12 @@ Abaixo está a lista de tarefas baseada nos requisitos levantados no projeto agr
 - [x] **RN02** - **Auto-atribuição**: Novos serviços cadastrados devem ser vinculados e pertencer automaticamente ao usuário que está logado no momento.
 - [x] **RN03** - **Status Inicial**: Todo novo serviço deve ser cadastrado obrigatoriamente com o status de "Pendente".
 - [x] **RN04** - **Campos Obrigatórios**: O cadastro deve ser efetuado apenas se "Descrição do serviço" e "Valor" estiverem preenchidos.
-- [ ] **RN05** - **Comissão Faixa 1**: Para serviços com valor menor ou igual a R$ 1.000,00, a comissão gerada deve ser de **5%**.
-- [ ] **RN06** - **Comissão Faixa 2**: Para serviços com valor maior que R$ 1.000,00 e até R$ 10.000,00, a comissão gerada deve ser de **10%**. *(Obs: limite superior inferido para não causar conflito com a Faixa 3)*.
-- [ ] **RN07** - **Comissão Faixa 3**: Para serviços com valor maior que R$ 10.000,00, a comissão gerada deve ser de **20%**.
+- [x] **RN05** - **Comissão Faixa 1**: Para serviços com valor menor ou igual a R$ 1.000,00, a comissão gerada deve ser de **5%**.
+- [x] **RN06** - **Comissão Faixa 2**: Para serviços com valor maior que R$ 1.000,00 e até R$ 10.000,00, a comissão gerada deve ser de **10%**. *(Obs: limite superior inferido para não causar conflito com a Faixa 3)*.
+- [x] **RN07** - **Comissão Faixa 3**: Para serviços com valor maior que R$ 10.000,00, a comissão gerada deve ser de **20%**.
 
 ## 🛠️ Requisitos Não Funcionais (RNF)
 - [x] **RNF01** - **Linguagem de Programação**: O sistema deve ser implementado na linguagem PHP.
 - [x] **RNF02** - **Banco de Dados**: O sistema deve utilizar MySQL para gerenciar e salvar o banco de dados.
-- [ ] **RNF03** - **Envio de Emails**: O sistema deve ter um serviço de SMTP ou biblioteca configurada em PHP para envio dos e-mails de finalização (ex: PHPMailer).
+- [x] **RNF03** - **Envio de Emails**: O sistema deve ter um serviço de SMTP ou biblioteca configurada em PHP para envio dos e-mails de finalização (ex: PHPMailer).
 - [x] **RNF04** - **Interface (UI)**: A tela de Dashboard deve possuir elementos visuais que consigam destacar corretamente as seções de valor total financeiro e lista de serviços pendentes.

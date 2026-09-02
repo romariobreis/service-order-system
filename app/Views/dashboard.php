@@ -129,7 +129,12 @@
                   <td>
                     <div class="action-buttons">
                       <button class="action-btn edit" title="Alterar">✏️</button>
-                      <button class="action-btn complete" title="Finalizar">✓</button>
+                      <?php if (empty($service->finished_at)) { ?>
+                        <form action="<?php echo BASE_URL ?>service/finish" method="POST" style="display:inline;">
+                          <input type="hidden" name="id_service" value="<?php echo $service->id_service ?>">
+                          <button type="submit" class="action-btn complete" title="Finalizar" onclick="return confirm('Deseja realmente finalizar este serviço?')">✓</button>
+                        </form>
+                      <?php } ?>
                       <button class="action-btn delete" title="Excluir">✕</button>
                     </div>
                   </td>

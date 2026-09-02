@@ -34,4 +34,19 @@ class ServiceController extends BaseController
       exit;
     }
   }
+
+  public function finish()
+  {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $serviceId = $_POST['id_service'] ?? 0;
+
+      if ($this->serviceService->finishService((int)$serviceId)) {
+        $_SESSION['success_message'] = "Serviço finalizado com sucesso! O usuário foi notificado.";
+      } else {
+        $_SESSION['error_message'] = "Falha ao finalizar o serviço. Ele pode já estar concluído.";
+      }
+      header('Location: ' . BASE_URL);
+      exit;
+    }
+  }
 }

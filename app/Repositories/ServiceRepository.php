@@ -90,4 +90,19 @@ class ServiceRepository
 
     return $stmt->fetchAll();
   }
+
+  public function findById(int $id)
+  {
+    $sql = "SELECT * FROM service WHERE id_service = :id LIMIT 1";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([':id' => $id]);
+    return $stmt->fetch();
+  }
+
+  public function finishService(int $id, float $commission): bool
+  {
+    $sql = "UPDATE service SET finished_at = NOW(), commission_user = :commission WHERE id_service = :id";
+    $stmt = $this->db->prepare($sql);
+    return $stmt->execute([':commission' => $commission, ':id' => $id]);
+  }
 }

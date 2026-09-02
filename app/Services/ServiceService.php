@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\ServiceRepository;
+use App\Repositories\UserRepository;
 
 class ServiceService
 {
@@ -65,5 +66,38 @@ class ServiceService
       'latestCompleted'      => $latestCompleted,
       'latestPending'        => $latestPending
     ];
+  }
+
+  public function finishService(int $serviceId): bool
+  {
+    $service = $this->serviceRepository->findById($serviceId);
+
+    if (empty($service) || $service->finished_at !== null) {
+      return false;
+    }
+
+    $price = (float) $service->price;
+    $commission = 0.0;
+
+    if ($price <= 1000.00) {
+      $commission = $price * 0.05;
+    } elseif ($price <= 10000.00) {
+      $commission = $price * 0.10;
+    } else {
+      $commission = $price * 0.20;
+    }
+
+    if ($this->serviceRepository->finishService($serviceId, $commission)) {
+      $userRepository = new UserRepository();
+      $user = $userRepository->findById((int)$service->user_id_user);
+
+      if ($user && !empty($user->email)) {
+        $emailService = new EmailService();
+        $emailService->sendServiceFinishedEmail($user->email, $user->name, $service->description);
+      }
+      return true;
+    }
+
+    return false;
   }
 }
