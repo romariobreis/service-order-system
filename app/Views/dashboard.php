@@ -32,6 +32,28 @@
         <h1 class="dashboard-title">DASHBOARD</h1>
       </div>
 
+      <?php if (!empty($_SESSION['success_message'])) { ?>
+        <div class="alert alert-success">
+          <span><?php echo $_SESSION['success_message']; ?></span>
+          <button type="button" class="alert-close" onclick="this.parentElement.remove();" title="Fechar">
+            &times;
+          </button>
+        </div>
+        <?php unset($_SESSION['success_message']);
+        ?>
+      <?php } ?>
+
+      <?php if (!empty($_SESSION['error_message'])) { ?>
+        <div class="alert alert-error">
+          <span><?php echo $_SESSION['error_message']; ?></span>
+          <button type="button" class="alert-close" onclick="this.parentElement.remove();" title="Fechar">
+            &times;
+          </button>
+        </div>
+        <?php unset($_SESSION['error_message']);
+        ?>
+      <?php } ?>
+
       <div class="cards-section">
         <div class="card">
           <h2 class="card-title">Serviços Finalizados</h2>

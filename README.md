@@ -17,8 +17,8 @@ Abaixo está a lista de tarefas baseada nos requisitos levantados no projeto agr
 - [ ] **RF10** - **Filtros**: Deve permitir buscar serviços na tabela por **Status**.
 - [ ] **RF11** - **Filtros**: Deve permitir buscar serviços na tabela pelo **Nome do usuário**.
 - [ ] **RF12** - **Adicionar Serviço**: Botão deve permitir abrir uma nova tela com formulário para cadastro de novos serviços contendo os campos necessários.
-- [ ] **RF13** - **Adicionar Serviço**: Caso sucesso ao preencher (Descrição e Valor), deve salvar registro com mensagem de sucesso e redirecionar para tela inicial.
-- [ ] **RF14** - **Adicionar Serviço**: Caso falha (falta de dados obrigatórios ou erro), deve barrar o cadastro, exibir mensagem de falha e redirecionar para a tela inicial.
+- [x] **RF13** - **Adicionar Serviço**: Caso sucesso ao preencher (Descrição e Valor), deve salvar registro com mensagem de sucesso e redirecionar para tela inicial.
+- [x] **RF14** - **Adicionar Serviço**: Caso falha (falta de dados obrigatórios ou erro), deve barrar o cadastro, exibir mensagem de falha e redirecionar para a tela inicial.
 
 ## 💼 Regras de Negócio (RN)
 - [ ] **RN01** - **Status do Serviço**: O sistema deve definir o status baseado na data de finalização: Serviços sem data de finalização deve ser igual a "Pendente" e serviços com data de finalização deve ser igual a "Finalizado".

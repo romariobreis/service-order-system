@@ -21,4 +21,17 @@ class ServiceRepository
     $stmt->execute();
     return $stmt->fetchAll();
   }
+
+  public function create(string $description, float $price, int $userId): bool
+  {
+    $sql = "INSERT INTO service (description, price, user_id_user) VALUES (:description, :price, :userId)";
+
+    $stmt = $this->db->prepare($sql);
+
+    return $stmt->execute([
+      ':description' => $description,
+      ':price'       => $price,
+      ':userId'      => $userId
+    ]);
+  }
 }
