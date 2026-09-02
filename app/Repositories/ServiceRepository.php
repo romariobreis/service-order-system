@@ -149,4 +149,19 @@ class ServiceRepository
 
     return $stmt->fetchAll();
   }
+
+  public function update(int $id, string $description, float $price): bool
+  {
+    $sql = "UPDATE service 
+            SET description = :description, price = :price, update_at = NOW() 
+            WHERE id_service = :id";
+
+    $stmt = $this->db->prepare($sql);
+
+    return $stmt->execute([
+      ':description' => $description,
+      ':price'       => $price,
+      ':id'          => $id
+    ]);
+  }
 }

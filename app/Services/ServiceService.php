@@ -53,6 +53,26 @@ class ServiceService
     return $services;
   }
 
+  public function getServiceById(int $id)
+  {
+    return $this->serviceRepository->findById($id);
+  }
+
+  public function updateService(int $id, string $description, string $price): bool
+  {
+    if (empty(trim($description)) || empty($price)) {
+      return false;
+    }
+
+    $priceFloat = (float) $price;
+
+    if ($priceFloat <= 0) {
+      return false;
+    }
+
+    return $this->serviceRepository->update($id, $description, $priceFloat);
+  }
+
   public function getDashboardMetrics(int $userId): array
   {
     $total = $this->serviceRepository->getTotalValueByUserId($userId);

@@ -35,6 +35,36 @@ class ServiceController extends BaseController
     }
   }
 
+  public function edit($id)
+  {
+    $service = $this->serviceService->getServiceById((int) $id);
+
+    if (!$service) {
+      $_SESSION['error_message'] = "Serviço não encontrado.";
+      header('Location: ' . BASE_URL);
+      exit;
+    }
+
+    $this->view('edit-service', ['service' => $service]);
+  }
+
+  public function update($id)
+  {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $description = $_POST['description'] ?? '';
+      $price = $_POST['price'] ?? '';
+
+      if ($this->serviceService->updateService((int) $id, $description, $price)) {
+        $_SESSION['success_message'] = "Serviço atualizado com sucesso!";
+      } else {
+        $_SESSION['error_message'] = "Falha ao atualizar. Verifique os dados.";
+      }
+
+      header('Location: ' . BASE_URL);
+      exit;
+    }
+  }
+
   public function finish()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

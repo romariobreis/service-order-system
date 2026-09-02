@@ -19,6 +19,9 @@ Abaixo está a lista de tarefas baseada nos requisitos levantados no projeto agr
 - [x] **RF12** - **Adicionar Serviço**: Botão deve permitir abrir uma nova tela com formulário para cadastro de novos serviços contendo os campos necessários.
 - [x] **RF13** - **Adicionar Serviço**: Caso sucesso ao preencher (Descrição e Valor), deve salvar registro com mensagem de sucesso e redirecionar para tela inicial.
 - [x] **RF14** - **Adicionar Serviço**: Caso falha (falta de dados obrigatórios ou erro), deve barrar o cadastro, exibir mensagem de falha e redirecionar para a tela inicial.
+- [x] **RF15** - **Editar Serviço**: Deve ser possivel editar as informações de um serviço.
+- [ ] **RF16** - **Excluir Serviço**: Deve ser possivel excluir um serviço.
+
 
 ## 💼 Regras de Negócio (RN)
 - [x] **RN01** - **Status do Serviço**: O sistema deve definir o status baseado na data de finalização: Serviços sem data de finalização deve ser igual a "Pendente" e serviços com data de finalização deve ser igual a "Finalizado".

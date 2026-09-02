@@ -144,7 +144,7 @@
                   <td><?php echo htmlspecialchars($service->user_name); ?></td>
                   <td>
                     <div class="action-buttons">
-                      <button class="action-btn edit" title="Alterar">✏️</button>
+                      <a href="<?php echo BASE_URL ?>service/<?php echo $service->id_service ?>/edit" class="action-btn edit" title="Alterar" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">✏️</a>
                       <?php if (empty($service->finished_at)) { ?>
                         <form action="<?php echo BASE_URL ?>service/finish" method="POST" style="display:inline;">
                           <input type="hidden" name="id_service" value="<?php echo $service->id_service ?>">
@@ -158,7 +158,6 @@
               <?php } ?>
             <?php } else { ?>
               <tr>
-                <!-- colspan="6" para ocupar toda a largura da tabela -->
                 <td colspan="6" style="text-align: center; padding: 30px;">
                   Nenhum serviço cadastrado até o momento.
                 </td>
