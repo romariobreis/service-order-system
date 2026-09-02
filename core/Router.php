@@ -6,34 +6,35 @@ class Router
 {
   private $routes = [];
 
-  public function get($path, $controller, $action)
+  public function get($path, $controller, $action, array $middlewares = [])
   {
-    $this->addRoute('GET', $path, $controller, $action);
+    $this->addRoute('GET', $path, $controller, $action, $middlewares);
   }
 
-  public function post($path, $controller, $action)
+  public function post($path, $controller, $action, array $middlewares = [])
   {
-    $this->addRoute('POST', $path, $controller, $action);
+    $this->addRoute('POST', $path, $controller, $action, $middlewares);
   }
 
-  public function put($path, $controller, $action)
+  public function put($path, $controller, $action, array $middlewares = [])
   {
-    $this->addRoute('PUT', $path, $controller, $action);
+    $this->addRoute('PUT', $path, $controller, $action, $middlewares);
   }
 
-  public function delete($path, $controller, $action)
+  public function delete($path, $controller, $action, array $middlewares = [])
   {
-    $this->addRoute('DELETE', $path, $controller, $action);
+    $this->addRoute('DELETE', $path, $controller, $action, $middlewares);
   }
 
-  private function addRoute($method, $path, $controller, $action)
+  private function addRoute($method, $path, $controller, $action, array $middlewares = [])
   {
     $this->routes[] = [
-      'method' => $method,
-      'path' => $this->normalizePath($path),
-      'controller' => $controller,
-      'action' => $action,
-      'pattern' => $this->pathToRegex($path)
+      'method'      => $method,
+      'path'        => $this->normalizePath($path),
+      'controller'  => $controller,
+      'action'      => $action,
+      'middlewares' => $middlewares,
+      'pattern'     => $this->pathToRegex($path)
     ];
   }
 
@@ -69,6 +70,25 @@ class Router
 
   private function callController($route, $matches)
   {
+    if (!empty($route['middlewares'])) {
+      foreach ($route['middlewares'] as $middleware) {
+        if (!class_exists($middleware)) {
+          die("Middleware não encontrado: $middleware");
+        }
+
+        $middlewareInstance = new $middleware();
+
+        if (method_exists($middlewareInstance, 'handle')) {
+          $passed = $middlewareInstance->handle();
+          if ($passed === false) {
+            return;
+          }
+        } else {
+          die("O método handle() não foi encontrado no middleware: $middleware");
+        }
+      }
+    }
+
     $controller = $route['controller'];
     $action = $route['action'];
 
