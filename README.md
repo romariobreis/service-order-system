@@ -21,10 +21,10 @@ Abaixo está a lista de tarefas baseada nos requisitos levantados no projeto agr
 - [x] **RF14** - **Adicionar Serviço**: Caso falha (falta de dados obrigatórios ou erro), deve barrar o cadastro, exibir mensagem de falha e redirecionar para a tela inicial.
 
 ## 💼 Regras de Negócio (RN)
-- [ ] **RN01** - **Status do Serviço**: O sistema deve definir o status baseado na data de finalização: Serviços sem data de finalização deve ser igual a "Pendente" e serviços com data de finalização deve ser igual a "Finalizado".
-- [ ] **RN02** - **Auto-atribuição**: Novos serviços cadastrados devem ser vinculados e pertencer automaticamente ao usuário que está logado no momento.
-- [ ] **RN03** - **Status Inicial**: Todo novo serviço deve ser cadastrado obrigatoriamente com o status de "Pendente".
-- [ ] **RN04** - **Campos Obrigatórios**: O cadastro deve ser efetuado apenas se "Descrição do serviço" e "Valor" estiverem preenchidos.
+- [x] **RN01** - **Status do Serviço**: O sistema deve definir o status baseado na data de finalização: Serviços sem data de finalização deve ser igual a "Pendente" e serviços com data de finalização deve ser igual a "Finalizado".
+- [x] **RN02** - **Auto-atribuição**: Novos serviços cadastrados devem ser vinculados e pertencer automaticamente ao usuário que está logado no momento.
+- [x] **RN03** - **Status Inicial**: Todo novo serviço deve ser cadastrado obrigatoriamente com o status de "Pendente".
+- [x] **RN04** - **Campos Obrigatórios**: O cadastro deve ser efetuado apenas se "Descrição do serviço" e "Valor" estiverem preenchidos.
 - [ ] **RN05** - **Comissão Faixa 1**: Para serviços com valor menor ou igual a R$ 1.000,00, a comissão gerada deve ser de **5%**.
 - [ ] **RN06** - **Comissão Faixa 2**: Para serviços com valor maior que R$ 1.000,00 e até R$ 10.000,00, a comissão gerada deve ser de **10%**. *(Obs: limite superior inferido para não causar conflito com a Faixa 3)*.
 - [ ] **RN07** - **Comissão Faixa 3**: Para serviços com valor maior que R$ 10.000,00, a comissão gerada deve ser de **20%**.
