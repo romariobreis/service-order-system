@@ -22,7 +22,7 @@ class ServiceController extends BaseController
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $description = $_POST['description'] ?? '';
-      $price = '';
+      $price = $_POST['price'] ?? '';
 
       if ($this->serviceService->createService($description, $price)) {
         $_SESSION['success_message'] = "Serviço cadastrado com sucesso.";

@@ -7,7 +7,7 @@ Abaixo está a lista de tarefas baseada nos requisitos levantados no projeto agr
 ## 📋 Requisitos Funcionais (RF)
 - [x] **RF01** - **Autenticação**: Tela de login deve validar e-mail e senha: redireciona para o Dashboard se houver sucesso ou exibe mensagem "Ops, Email ou Senha inválido" se falhar.
 - [x] **RF02** - **Dashboard**: Deve exibir dados do usuário logado e data atual.
-- [ ] **RF03** - **Dashboard**: Deve exibir tabela de serviços prestados pelos funcionários contendo as colunas ID, Descrição, Status, Valor e Nome do Usuário.
+- [x] **RF03** - **Dashboard**: Deve exibir tabela de serviços prestados pelos funcionários contendo as colunas ID, Descrição, Status, Valor e Nome do Usuário.
 - [x] **RF04** - **Dashboard**: Deve exibir coluna **Ações** na tabela com botões para **Excluir**, **Alterar** e **Finalizar** o registro do serviço.
 - [ ] **RF05** - **Dashboard (Serviços Finalizados)**: Deve exibir de forma destacada uma pequena lista com os últimos serviços com status **"Finalizado"** e o **Valor Total** dos serviços prestados pelo usuário logado.
 - [ ] **RF06** - **Dashboard (Serviços Pendentes)**: Deve exibir de forma destacada uma pequena lista com os últimos serviços com status **"Pendente"**.

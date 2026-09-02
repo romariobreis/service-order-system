@@ -15,9 +15,9 @@ class AuthController extends BaseController
 
   public function index()
   {
-    if (isset($_SESSION['user_name'])) {
-      $userLogged = $_SESSION['user_name'];
-      $this->view('dashboard', ['userLogged' => $userLogged]);
+    if (!empty($_SESSION['user_name'])) {
+      header('Location: ' . BASE_URL . 'dashboard');
+      exit;
     } else {
       $error = isset($_SESSION['login_error']) ? $_SESSION['login_error'] : null;
       unset($_SESSION['login_error']);

@@ -32,4 +32,23 @@ class ServiceService
 
     return $this->serviceRepository->create($description, $priceFloat, $userId);
   }
+
+  public function getAllServices(): array
+  {
+    $services = $this->serviceRepository->findAllWithUser();
+
+    foreach ($services as $service) {
+      if (empty($service->finished_at)) {
+        $service->status_label = 'PENDENTE';
+        $service->status_class = 'pending';
+      } else {
+        $service->status_label = 'FINALIZADO';
+        $service->status_class = 'completed';
+      }
+
+      $service->price_formatted = 'R$ ' . number_format($service->price, 2, ',', '.');
+    }
+
+    return $services;
+  }
 }

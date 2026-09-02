@@ -94,34 +94,35 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>4585874</td>
-              <td>Troca de Tela LED</td>
-              <td>R$ 425,00</td>
-              <td><span class="status pending">PENDENTE</span></td>
-              <td>José Silva</td>
-              <td>
-                <div class="action-buttons">
-                  <button class="action-btn edit" title="Alterar">✏️</button>
-                  <button class="action-btn complete" title="Finalizar">✓</button>
-                  <button class="action-btn delete" title="Excluir">✕</button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>9945258</td>
-              <td>Limpeza de Computador</td>
-              <td>R$ 100,00</td>
-              <td><span class="status completed">FINALIZADO</span></td>
-              <td>Maria Santos</td>
-              <td>
-                <div class="action-buttons">
-                  <button class="action-btn edit" title="Alterar">✏️</button>
-                  <button class="action-btn complete" title="Finalizar">✓</button>
-                  <button class="action-btn delete" title="Excluir">✕</button>
-                </div>
-              </td>
-            </tr>
+            <?php if (!empty($services)) { ?>
+              <?php foreach ($services as $service) { ?>
+                <tr>
+                  <td><?php echo $service->id_service; ?></td>
+                  <td><?php echo htmlspecialchars($service->description); ?></td>
+                  <td><?php echo $service->price_formatted; ?></td>
+                  <td>
+                    <span class="status <?php echo $service->status_class; ?>">
+                      <?php echo $service->status_label; ?>
+                    </span>
+                  </td>
+                  <td><?php echo htmlspecialchars($service->user_name); ?></td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="action-btn edit" title="Alterar">✏️</button>
+                      <button class="action-btn complete" title="Finalizar">✓</button>
+                      <button class="action-btn delete" title="Excluir">✕</button>
+                    </div>
+                  </td>
+                </tr>
+              <?php } ?>
+            <?php } else { ?>
+              <tr>
+                <!-- colspan="6" para ocupar toda a largura da tabela -->
+                <td colspan="6" style="text-align: center; padding: 30px;">
+                  Nenhum serviço cadastrado até o momento.
+                </td>
+              </tr>
+            <?php } ?>
           </tbody>
         </table>
       </div>
