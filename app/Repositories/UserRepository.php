@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\UserModel;
 use Core\Database\Connection;
+use PDO;
 
 class UserRepository
 {
@@ -20,5 +21,28 @@ class UserRepository
     $stmt = $this->db->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll();
+  }
+
+  public function findByEmail(string $email)
+  {
+    $sql = "SELECT * FROM user WHERE email = :email LIMIT 1";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+
+  public function create(string $email, string $password)
+  {
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO user (email, password) VALUES (:email, :password)";
+    $stmt = $this->db->prepare($sql);
+
+    return $stmt->execute([
+      ':email' => $email,
+      ':password' => $passwordHash
+    ]);
   }
 }

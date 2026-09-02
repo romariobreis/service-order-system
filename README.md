@@ -5,10 +5,10 @@ Este é o repositório do Sistema de Ordem de Serviços da **JM Informática**, 
 Abaixo está a lista de tarefas baseada nos requisitos levantados no projeto agrupadas por requisitos funcionais (RF), requisitos não funcionais (RNF) e regras de negócios (RN):
 
 ## 📋 Requisitos Funcionais (RF)
-- [ ] **RF01** - **Autenticação**: Tela de login deve validar e-mail e senha: redireciona para o Dashboard se houver sucesso ou exibe mensagem "Ops, Email ou Senha inválido" se falhar.
-- [ ] **RF02** - **Dashboard**: Deve exibir dados do usuário logado e data atual.
+- [x] **RF01** - **Autenticação**: Tela de login deve validar e-mail e senha: redireciona para o Dashboard se houver sucesso ou exibe mensagem "Ops, Email ou Senha inválido" se falhar.
+- [x] **RF02** - **Dashboard**: Deve exibir dados do usuário logado e data atual.
 - [ ] **RF03** - **Dashboard**: Deve exibir tabela de serviços prestados pelos funcionários contendo as colunas ID, Descrição, Status, Valor e Nome do Usuário.
-- [ ] **RF04** - **Dashboard**: Deve exibir coluna **Ações** na tabela com botões para **Excluir**, **Alterar** e **Finalizar** o registro do serviço.
+- [x] **RF04** - **Dashboard**: Deve exibir coluna **Ações** na tabela com botões para **Excluir**, **Alterar** e **Finalizar** o registro do serviço.
 - [ ] **RF05** - **Dashboard (Serviços Finalizados)**: Deve exibir de forma destacada uma pequena lista com os últimos serviços com status **"Finalizado"** e o **Valor Total** dos serviços prestados pelo usuário logado.
 - [ ] **RF06** - **Dashboard (Serviços Pendentes)**: Deve exibir de forma destacada uma pequena lista com os últimos serviços com status **"Pendente"**.
 - [ ] **RF07** - **Finalizar Serviço**: Ao clicar em finalizar, o sistema deve gravar a data de finalização, calcular a comissão gerada e disparar um e-mail para o usuário que realizou o serviço.
@@ -31,6 +31,6 @@ Abaixo está a lista de tarefas baseada nos requisitos levantados no projeto agr
 
 ## 🛠️ Requisitos Não Funcionais (RNF)
 - [x] **RNF01** - **Linguagem de Programação**: O sistema deve ser implementado na linguagem PHP.
-- [ ] **RNF02** - **Banco de Dados**: O sistema deve utilizar MySQL para gerenciar e salvar o banco de dados.
+- [x] **RNF02** - **Banco de Dados**: O sistema deve utilizar MySQL para gerenciar e salvar o banco de dados.
 - [ ] **RNF03** - **Envio de Emails**: O sistema deve ter um serviço de SMTP ou biblioteca configurada em PHP para envio dos e-mails de finalização (ex: PHPMailer).
 - [x] **RNF04** - **Interface (UI)**: A tela de Dashboard deve possuir elementos visuais que consigam destacar corretamente as seções de valor total financeiro e lista de serviços pendentes.
