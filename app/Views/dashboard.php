@@ -151,7 +151,9 @@
                           <button type="submit" class="action-btn complete" title="Finalizar" onclick="return confirm('Deseja realmente finalizar este serviço?')">✓</button>
                         </form>
                       <?php } ?>
-                      <button class="action-btn delete" title="Excluir">✕</button>
+                      <form action="<?php echo BASE_URL ?>service/<?php echo $service->id_service ?>/delete" method="POST" style="display:inline;">
+                        <button type="submit" class="action-btn delete" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir este serviço? Esta ação não pode ser desfeita.')">✕</button>
+                      </form>
                     </div>
                   </td>
                 </tr>

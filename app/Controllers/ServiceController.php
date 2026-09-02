@@ -65,6 +65,21 @@ class ServiceController extends BaseController
     }
   }
 
+  public function delete($id)
+  {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+      if ($this->serviceService->deleteService((int) $id)) {
+        $_SESSION['success_message'] = "Serviço excluído com sucesso!";
+      } else {
+        $_SESSION['error_message'] = "Erro ao tentar excluir o serviço.";
+      }
+
+      header('Location: ' . BASE_URL);
+      exit;
+    }
+  }
+
   public function finish()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

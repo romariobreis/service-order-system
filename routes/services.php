@@ -8,5 +8,6 @@ $router->post('/service/create', ServiceController::class, 'create', [AuthMiddle
 $router->post('/service/finish', ServiceController::class, 'finish', [AuthMiddleware::class]);
 $router->get('/service/{id}/edit', ServiceController::class, 'edit', [AuthMiddleware::class]);
 $router->post('/service/{id}/update', ServiceController::class, 'update', [AuthMiddleware::class]);
+$router->post('/service/{id}/delete', ServiceController::class, 'delete', [AuthMiddleware::class]);
 
 return $router;

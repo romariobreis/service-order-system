@@ -164,4 +164,12 @@ class ServiceRepository
       ':id'          => $id
     ]);
   }
+
+  public function delete(int $id): bool
+  {
+    $sql = "DELETE FROM service WHERE id_service = :id";
+    $stmt = $this->db->prepare($sql);
+
+    return $stmt->execute([':id' => $id]);
+  }
 }

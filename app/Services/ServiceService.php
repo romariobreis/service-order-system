@@ -73,6 +73,11 @@ class ServiceService
     return $this->serviceRepository->update($id, $description, $priceFloat);
   }
 
+  public function deleteService(int $id): bool
+  {
+    return $this->serviceRepository->delete($id);
+  }
+
   public function getDashboardMetrics(int $userId): array
   {
     $total = $this->serviceRepository->getTotalValueByUserId($userId);
