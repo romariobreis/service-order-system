@@ -10,10 +10,6 @@ class Connection
   private static ?Connection $instance = null;
   private ?PDO $connection = null;
 
-  private const HOST = 'localhost';
-  private const DB_NAME = 'service_order_system';
-  private const USER = 'admin';
-  private const PASSWD = 'jY6u7&Ugc7*';
   private const CHARSET = 'utf8mb4';
   private const OPTIONS = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -39,10 +35,15 @@ class Connection
   {
     if (empty(self::$instance)) {
       try {
+        $host   = $_ENV['DB_HOST'] ?? 'localhost';
+        $dbName = $_ENV['DB_NAME'] ?? 'service_order_system';
+        $user   = $_ENV['DB_USER'] ?? 'root';
+        $pass   = $_ENV['DB_PASS'] ?? '';
+
         $this->connection = new PDO(
-          'mysql:host=' . self::HOST . ';dbname=' . self::DB_NAME . ';charset=' . self::CHARSET,
-          self::USER,
-          self::PASSWD,
+          "mysql:host={$host};dbname={$dbName};charset=" . self::CHARSET,
+          $user,
+          $pass,
           self::OPTIONS
         );
       } catch (PDOException $e) {

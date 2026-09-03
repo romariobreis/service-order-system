@@ -37,3 +37,42 @@ Abaixo está a lista de tarefas baseada nos requisitos levantados no projeto agr
 - [x] **RNF02** - **Banco de Dados**: O sistema deve utilizar MySQL para gerenciar e salvar o banco de dados.
 - [x] **RNF03** - **Envio de Emails**: O sistema deve ter um serviço de SMTP ou biblioteca configurada em PHP para envio dos e-mails de finalização (ex: PHPMailer).
 - [x] **RNF04** - **Interface (UI)**: A tela de Dashboard deve possuir elementos visuais que consigam destacar corretamente as seções de valor total financeiro e lista de serviços pendentes.
+
+## 🚀 Como Configurar e Executar o Projeto
+
+### 1. Pré-requisitos
+* **PHP** (versão 7.4 ou superior)
+* **MySQL**
+* Servidor Web (Pode ser Apache via XAMPP/WAMP, Nginx, ou o servidor embutido do PHP)
+
+### 2. Instalação e Configuração do Banco de Dados
+1. Clone este repositório.
+2. Acesse o seu gerenciador de banco de dados e crie um banco de dados.
+3. Crie as tabelas necessárias `user` e `service` e certifique-se de que a tabela `service` possui uma chave estrangeira apontando para `user`.
+
+### 3. Configuração do Ambiente (.env)
+1. Na raiz do projeto, localize o arquivo `.env.example`.
+2. Duplique este arquivo e renomeie a cópia para `.env`.
+3. Abra o arquivo `.env` e preencha com as credenciais do seu banco de dados local:
+```env
+DB_HOST=localhost
+DB_NAME=seu_banco
+DB_USER=seu_usuario_do_banco
+DB_PASS=sua_senha_do_banco
+```
+
+## Melhorias Futuras (Roadmap)
+
+**Validação**: Implementar uma classe Request para interceptar os dados da requisição antes que cheguem no controller e aplicar validação completa.
+
+**Paginação de Resultados:** Implementar paginação na tabela do Dashboard para evitar lentidão quando o volume de serviços cadastrados for muito alto.
+
+**Controle de Níveis de Acesso**: Criar a distinção entre "Usuário Padrão" (só vê seus próprios serviços) e "Administrador" (vê e gerencia os serviços de todos).
+
+**Recuperação de Senha**: Implementar um fluxo de "Esqueci minha senha" disparando um token de recuperação via e-mail.
+
+**Relatórios **: Adicionar botões para exportar a tabela de serviços filtrada para PDF ou Excel.
+
+**Gráficos Visuais**: Exibir a evolução das comissões e dos serviços finalizados ao longo do mês.
+
+**Perfil do Usuário**: Criar uma tela onde o usuário possa alterar seu nome, e-mail, senha e foto de perfil.
