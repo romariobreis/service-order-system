@@ -57,7 +57,7 @@
       <div class="cards-section">
         <div class="card">
           <h2 class="card-title">Serviços Finalizados</h2>
-          <div style="font-size: 28px; font-weight: 700; color: var(--color-completed); margin-bottom: 20px;">
+          <div class="card-total-value">
             <?php echo $metrics['total'] ?? 'R$ 0,00'; ?>
           </div>
 
@@ -69,7 +69,7 @@
                 </li>
               <?php } ?>
             <?php } else { ?>
-              <li class="service-item" style="color: var(--color-gray-light);">
+              <li class="service-item no-service">
                 Nenhum serviço finalizado ainda.
               </li>
             <?php } ?>
@@ -86,7 +86,7 @@
                 </li>
               <?php } ?>
             <?php } else { ?>
-              <li class="service-item" style="color: var(--color-gray-light);">
+              <li class="service-item no-service">
                 Nenhum serviço pendente no momento.
               </li>
             <?php } ?>
@@ -94,13 +94,13 @@
         </div>
       </div>
 
-      <form method="GET" class="filters-section" style="flex-wrap: wrap;">
+      <form method="GET" class="filters-section">
 
         <input type="text" name="serviceName" class="filter-input" placeholder="Nome do Serviço" value="<?php echo htmlspecialchars($filters['serviceName'] ?? '') ?>">
 
         <input type="text" name="userName" class="filter-input" placeholder="Nome do Usuário" value="<?php echo htmlspecialchars($filters['userName'] ?? '') ?>">
 
-        <select name="status" class="filter-input" style="background: white;">
+        <select name="status" class="filter-input">
           <option value="">Todos os Status</option>
           <option value="pending" <?php echo !empty($filters['status']) && $filters['status'] === 'pending' ? 'selected' : '' ?>>Pendente</option>
           <option value="finished" <?php echo !empty($filters['status']) && $filters['status'] === 'finished' ? 'selected' : '' ?>>Finalizado</option>
@@ -114,7 +114,7 @@
 
         <button type="submit" class="filter-button">Filtrar</button>
 
-        <a href="<?php echo BASE_URL ?>" class="filter-button" style="background-color: var(--color-gray-medium); text-decoration: none; text-align: center; display: inline-block;">Limpar</a>
+        <a href="<?php echo BASE_URL ?>" class="filter-button btn-clear">Limpar</a>
       </form>
 
       <div class="table-section">
@@ -144,14 +144,14 @@
                   <td><?php echo htmlspecialchars($service->user_name); ?></td>
                   <td>
                     <div class="action-buttons">
-                      <a href="<?php echo BASE_URL ?>service/<?php echo $service->id_service ?>/edit" class="action-btn edit" title="Alterar" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">✏️</a>
+                      <a href="<?php echo BASE_URL ?>service/<?php echo $service->id_service ?>/edit" class="action-btn edit" title="Alterar">✏️</a>
                       <?php if (empty($service->finished_at)) { ?>
-                        <form action="<?php echo BASE_URL ?>service/finish" method="POST" style="display:inline;">
+                        <form action="<?php echo BASE_URL ?>service/finish" method="POST">
                           <input type="hidden" name="id_service" value="<?php echo $service->id_service ?>">
                           <button type="submit" class="action-btn complete" title="Finalizar" onclick="return confirm('Deseja realmente finalizar este serviço?')">✓</button>
                         </form>
                       <?php } ?>
-                      <form action="<?php echo BASE_URL ?>service/<?php echo $service->id_service ?>/delete" method="POST" style="display:inline;">
+                      <form action="<?php echo BASE_URL ?>service/<?php echo $service->id_service ?>/delete" method="POST">
                         <button type="submit" class="action-btn delete" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir este serviço? Esta ação não pode ser desfeita.')">✕</button>
                       </form>
                     </div>
@@ -160,7 +160,7 @@
               <?php } ?>
             <?php } else { ?>
               <tr>
-                <td colspan="6" style="text-align: center; padding: 30px;">
+                <td colspan="6" class="no-service">
                   Nenhum serviço cadastrado até o momento.
                 </td>
               </tr>

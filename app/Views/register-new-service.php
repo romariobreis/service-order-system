@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastrar Serviço - Sistema de Controle de Serviços</title>
+  <title>Cadastrar Serviço | Sistema de Controle de Serviços</title>
   <link rel="stylesheet" href="<?php echo BASE_PUBLIC; ?>css/new-service.css">
 </head>
 
@@ -24,6 +24,8 @@
 
         <div class="service-buttons">
           <button type="submit" class="service-button">Cadastrar</button>
+          <a href="<?php echo BASE_URL ?>" class="service-button btn-service-cancel">Cancelar</a>
+
         </div>
       </form>
 

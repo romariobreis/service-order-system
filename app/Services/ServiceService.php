@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\ServiceModel;
 use App\Repositories\ServiceRepository;
 use App\Repositories\UserRepository;
 
 class ServiceService
 {
-  private $serviceRepository;
+  private ServiceRepository $serviceRepository;
 
   public function __construct()
   {
@@ -53,7 +54,7 @@ class ServiceService
     return $services;
   }
 
-  public function getServiceById(int $id)
+  public function getServiceById(int $id): ?ServiceModel
   {
     return $this->serviceRepository->findById($id);
   }

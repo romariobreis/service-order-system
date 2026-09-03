@@ -61,7 +61,7 @@ body {
 
 .register-buttons {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
 }
 
 .form-group {
@@ -110,6 +110,12 @@ body {
 .register-button:active {
   transform: translateY(0);
 }
+
+.btn-user-cancel {
+  text-decoration: none;
+  text-align: center;
+}
+
 
 @media (max-width: 768px) {
   .register-box {

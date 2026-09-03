@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 abstract class BaseController
 {
-  protected function view(string $path, array $data = [])
+  protected function view(string $path, array $data = []): void
   {
     extract($data);
 

@@ -4,35 +4,16 @@ namespace App\Models;
 
 class UserModel
 {
-  private $table = 'user';
-  private $id;
-  private $name;
-  private $email;
-  private $password;
-  private $created_at;
-  private $updated_at;
-  private $active;
+  public ?int $id_user = null;
+  public ?string $name = null;
+  public ?string $email = null;
+  public ?string $password = null;
+  public ?string $created_at = null;
+  public ?string $update_at = null;
+  public ?bool $active = null;
 
-  public function __construct(
-    $name = null,
-    $email = null,
-    $password = null,
-    $id = null,
-    $created_at = null,
-    $updated_at = null,
-    $active = true
-  ) {
-    $this->id = $id;
-    $this->name = $name;
-    $this->email = $email;
-    $this->password = $password;
-    $this->created_at = $created_at;
-    $this->updated_at = $updated_at;
-    $this->active = $active;
-  }
-
-  public function getTable()
+  public static function getTable(): string
   {
-    return $this->table;
+    return 'user';
   }
 }
