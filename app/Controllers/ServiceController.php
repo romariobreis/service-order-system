@@ -6,19 +6,19 @@ use App\Services\ServiceService;
 
 class ServiceController extends BaseController
 {
-  private $serviceService;
+  private ServiceService $serviceService;
 
   public function __construct()
   {
     $this->serviceService = new ServiceService();
   }
 
-  public function registerForm()
+  public function registerForm(): void
   {
     $this->view('register-new-service');
   }
 
-  public function create()
+  public function create(): void
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $description = $_POST['description'] ?? '';
@@ -35,7 +35,7 @@ class ServiceController extends BaseController
     }
   }
 
-  public function edit($id)
+  public function edit(int $id): void
   {
     $service = $this->serviceService->getServiceById((int) $id);
 
@@ -48,7 +48,7 @@ class ServiceController extends BaseController
     $this->view('edit-service', ['service' => $service]);
   }
 
-  public function update($id)
+  public function update(int $id): void
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $description = $_POST['description'] ?? '';
@@ -65,7 +65,7 @@ class ServiceController extends BaseController
     }
   }
 
-  public function delete($id)
+  public function delete(int $id): void
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -80,7 +80,7 @@ class ServiceController extends BaseController
     }
   }
 
-  public function finish()
+  public function finish(): void
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $serviceId = $_POST['id_service'] ?? 0;

@@ -4,35 +4,15 @@ namespace App\Repositories;
 
 use App\Models\ServiceModel;
 use Core\Database\Connection;
+use PDO;
 
 class ServiceRepository
 {
-  private $db;
+  private Connection $db;
 
   public function __construct()
   {
     $this->db = Connection::getInstance();
-  }
-
-  public function findAll()
-  {
-    $sql = "SELECT * FROM service";
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute();
-    return $stmt->fetchAll();
-  }
-
-  public function findAllWithUser()
-  {
-    $sql = "SELECT s.id_service, s.description, s.price, s.finished_at, u.name as user_name
-            FROM service s
-            INNER JOIN user u ON s.user_id_user = u.id_user
-            ORDER BY s.id_service DESC";
-
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute();
-
-    return $stmt->fetchAll();
   }
 
   public function create(string $description, float $price, int $userId): bool
@@ -54,8 +34,7 @@ class ServiceRepository
             WHERE user_id_user = :userId AND finished_at IS NOT NULL";
 
     $stmt = $this->db->prepare($sql);
-    $stmt->bindValue(':userId', $userId);
-    $stmt->execute();
+    $stmt->execute([':userId' => $userId]);
     $result = $stmt->fetch();
 
     return $result->total ? (float) $result->total : 0.0;
@@ -69,11 +48,9 @@ class ServiceRepository
             LIMIT :limit";
 
     $stmt = $this->db->prepare($sql);
-    $stmt->bindValue(':userId', $userId);
-    $stmt->bindValue(':limit', $limit);
-    $stmt->execute();
+    $stmt->execute([':userId' => $userId, ':limit' => $limit]);
 
-    return $stmt->fetchAll();
+    return $stmt->fetchAll(PDO::FETCH_CLASS, ServiceModel::class);
   }
 
   public function getLatestPendingServices(int $userId, int $limit = 3): array
@@ -84,19 +61,21 @@ class ServiceRepository
             LIMIT :limit";
 
     $stmt = $this->db->prepare($sql);
-    $stmt->bindValue(':userId', $userId);
-    $stmt->bindValue(':limit', $limit);
-    $stmt->execute();
+    $stmt->execute([':userId' => $userId, ':limit' => $limit]);
 
-    return $stmt->fetchAll();
+    return $stmt->fetchAll(PDO::FETCH_CLASS, ServiceModel::class);
   }
 
-  public function findById(int $id)
+  public function findById(int $id): ?ServiceModel
   {
     $sql = "SELECT * FROM service WHERE id_service = :id LIMIT 1";
     $stmt = $this->db->prepare($sql);
+    $stmt->setFetchMode(PDO::FETCH_CLASS, ServiceModel::class);
     $stmt->execute([':id' => $id]);
-    return $stmt->fetch();
+    $result = $stmt->fetch();
+    $result = !empty($result) ? $result : null;
+
+    return $result;
   }
 
   public function finishService(int $id, float $commission): bool
@@ -106,7 +85,7 @@ class ServiceRepository
     return $stmt->execute([':commission' => $commission, ':id' => $id]);
   }
 
-  public function findFiltered(array $filters)
+  public function findFiltered(array $filters): array
   {
     $sql = "SELECT s.id_service, s.description, s.price, s.created_at, s.finished_at, u.name as user_name FROM service s
             INNER JOIN user u ON s.user_id_user = u.id_user
@@ -147,7 +126,7 @@ class ServiceRepository
     $stmt = $this->db->prepare($sql);
     $stmt->execute($params);
 
-    return $stmt->fetchAll();
+    return $stmt->fetchAll(PDO::FETCH_CLASS, ServiceModel::class);
   }
 
   public function update(int $id, string $description, float $price): bool

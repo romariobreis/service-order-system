@@ -6,14 +6,14 @@ use App\Services\ServiceService;
 
 class DashboardController extends BaseController
 {
-  private $serviceService;
+  private ServiceService $serviceService;
 
   public function __construct()
   {
     $this->serviceService = new ServiceService();
   }
 
-  public function index()
+  public function index(): void
   {
     $userLogged = $_SESSION['user_name'];
     $userId = $_SESSION['user_id'];

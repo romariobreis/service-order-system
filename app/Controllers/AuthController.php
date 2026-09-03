@@ -6,14 +6,14 @@ use App\Services\AuthService;
 
 class AuthController extends BaseController
 {
-  private $authService;
+  private AuthService $authService;
 
   public function __construct()
   {
     $this->authService = new AuthService();
   }
 
-  public function index()
+  public function index(): void
   {
     if (!empty($_SESSION['user_id']) && !empty($_SESSION['user_name'])) {
       header('Location: ' . BASE_URL . 'dashboard');
@@ -26,7 +26,7 @@ class AuthController extends BaseController
     }
   }
 
-  public function login()
+  public function login(): void
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $email = $_POST['email'] ?? '';
@@ -43,7 +43,7 @@ class AuthController extends BaseController
     }
   }
 
-  public function logout()
+  public function logout(): void
   {
     $this->authService->logout();
 

@@ -27,7 +27,7 @@ class Connection
     $this->connect();
   }
 
-  public static function getInstance()
+  public static function getInstance(): Connection
   {
     if (self::$instance === null) {
       self::$instance = new self();
@@ -51,7 +51,7 @@ class Connection
     }
   }
 
-  public function prepare(String $sql)
+  public function prepare(String $sql): \PDOStatement
   {
     return $this->connection->prepare($sql);
   }

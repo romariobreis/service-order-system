@@ -6,19 +6,19 @@ use App\Services\UserService;
 
 class UserController extends BaseController
 {
-  private $userService;
+  private UserService $userService;
 
   public function __construct()
   {
     $this->userService = new UserService();
   }
 
-  public function registerForm()
+  public function registerForm(): void
   {
     $this->view('register-new-user');
   }
 
-  public function register()
+  public function register(): void
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $name = $_POST['name'] ?? 'Usuário';
