@@ -24,6 +24,8 @@
 
         <div class="service-buttons">
           <button type="submit" class="service-button">Cadastrar</button>
+          <a href="<?php echo BASE_URL ?>" class="service-button btn-service-cancel">Cancelar</a>
+
         </div>
       </form>
 

@@ -61,7 +61,7 @@ body {
 
 .service-buttons {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
 }
 
 .form-group {
@@ -109,6 +109,18 @@ body {
 
 .service-button:active {
   transform: translateY(0);
+}
+
+.label-edit {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--color-gray-dark);
+}
+
+.btn-service-cancel {
+  text-decoration: none;
+  text-align: center;
 }
 
 @media (max-width: 768px) {

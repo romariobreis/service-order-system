@@ -21,10 +21,11 @@ class UserController extends BaseController
   public function register()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $name = $_POST['name'] ?? 'Usuário';
       $email = $_POST['email'] ?? '';
       $password = $_POST['password'] ?? '';
 
-      if ($this->userService->registerUser($email, $password)) {
+      if ($this->userService->registerUser($name, $email, $password)) {
         header('Location: ' . BASE_URL);
         exit;
       } else {

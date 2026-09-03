@@ -15,18 +15,18 @@
 
       <form class="service-form" id="service-form" method="POST" action="<?php echo BASE_URL ?>service/<?php echo $service->id_service ?? '' ?>/update">
         <div class="form-group">
-          <label style="font-size: 14px; font-weight: bold; margin-bottom: 5px; color: var(--color-gray-dark);">Descrição do Serviço</label>
+          <label class="label-edit">Descrição do Serviço</label>
           <input type="text" name="description" class="form-input" value="<?php echo htmlspecialchars($service->description ?? '') ?>" required>
         </div>
 
         <div class="form-group">
-          <label style="font-size: 14px; font-weight: bold; margin-bottom: 5px; color: var(--color-gray-dark);">Valor (R$)</label>
+          <label class="label-edit">Valor (R$)</label>
           <input type="number" name="price" class="form-input" step="0.01" value="<?php echo number_format($service->price ?? 0, 2, '.', '') ?>" required>
         </div>
 
-        <div class="service-buttons" style="display: flex; gap: 15px;">
-          <button type="submit" class="service-button">Salvar Alterações</button>
-          <a href="<?php echo BASE_URL ?>" class="service-button" style="text-decoration: none; text-align: center;">Cancelar</a>
+        <div class="service-buttons"">
+          <button type=" submit" class="service-button">Salvar Alterações</button>
+          <a href="<?php echo BASE_URL ?>" class="service-button btn-service-cancel">Cancelar</a>
         </div>
       </form>
 

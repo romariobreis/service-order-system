@@ -290,6 +290,10 @@ body {
 .action-btn.edit {
   color: var(--color-primary);
   border-color: var(--color-primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .action-btn.edit:hover {
@@ -356,6 +360,29 @@ body {
 
 .alert-error .alert-close {
   color: var(--color-error-text);
+}
+
+.card-total-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-completed);
+  margin-bottom: 20px;
+}
+
+.no-service {
+  color: var(--color-gray-light);
+}
+
+.btn-clear {
+  background-color: var(--color-gray-medium);
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+}
+
+.no-service {
+  text-align: center;
+  padding: 30px;
 }
 
 @media (max-width: 1024px) {

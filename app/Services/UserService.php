@@ -13,7 +13,7 @@ class UserService
     $this->userRepository = new UserRepository();
   }
 
-  public function registerUser(string $email, string $password): bool
+  public function registerUser(string $name, string $email, string $password): bool
   {
     if (empty($email) || empty($password)) {
       return false;
@@ -24,6 +24,6 @@ class UserService
       return false;
     }
 
-    return $this->userRepository->create($email, $password);
+    return $this->userRepository->create($name, $email, $password);
   }
 }

@@ -41,14 +41,15 @@ class UserRepository
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function create(string $email, string $password)
+  public function create(string $name, string $email, string $password)
   {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO user (email, password) VALUES (:email, :password)";
+    $sql = "INSERT INTO user (name, email, password) VALUES (:name, :email, :password)";
     $stmt = $this->db->prepare($sql);
 
     return $stmt->execute([
+      ':name' => $name,
       ':email' => $email,
       ':password' => $passwordHash
     ]);

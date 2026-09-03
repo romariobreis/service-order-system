@@ -15,6 +15,10 @@
 
       <form class="register-form" id="register-form" method="POST" action="<?php echo BASE_URL; ?>register">
         <div class="form-group">
+          <input type="text" name="name" class="form-input" placeholder="Nome" required>
+        </div>
+
+        <div class="form-group">
           <input type="email" name="email" class="form-input" placeholder="email@email.com" required>
         </div>
 
@@ -24,6 +28,7 @@
 
         <div class="register-buttons">
           <button type="submit" class="register-button">Cadastrar</button>
+          <a href="<?php echo BASE_URL ?>" class="register-button btn-user-cancel">Cancelar</a>
         </div>
       </form>
 
